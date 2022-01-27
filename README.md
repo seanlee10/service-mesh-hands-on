@@ -5,6 +5,7 @@
 - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
 - [helm](https://helm.sh/docs/intro/install/)
 - [istioctl](https://istio.io/latest/docs/setup/getting-started/#download)
+- [aws-load-balancer-controller](https://github.com/aws/eks-charts/tree/master/stable/aws-load-balancer-controller)
 - [k9s](https://k9scli.io/topics/install/) (Optional)
 - EKS Cluster
 ```bash

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: service-blue
-        image: ghcr.io/service-blue:1.0.0
+        image: ghcr.io/seanlee10/service-blue:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: service-red
-        image: ghcr.io/service-red:1.0.0
+        image: ghcr.io/seanlee10//service-red:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -108,7 +108,7 @@ spec:
     spec:
       containers:
       - name: service-violet
-        image: ghcr.io/service-violet:1.0.0
+        image: ghcr.io/seanlee10//service-violet:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -146,6 +146,6 @@ spec:
     spec:
       containers:
       - name: service-purple
-        image: ghcr.io/service-purple:1.0.0
+        image: ghcr.io/seanlee10//service-purple:1.0.0
         ports:
         - containerPort: 3000

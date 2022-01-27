@@ -10,7 +10,7 @@
 eksctl create cluster -f eksctl/cluster.yaml
 
 # Create Kubeconfig
-aws eks update-kubeconfig --name cluster-seanlee --region ap-northeast-2 --role-arn arn:aws:iam::155220455506:role/eks-admin
+aws eks update-kubeconfig --name ###YOUR_CLUSTER### --region ap-northeast-2 --role-arn ###IAM_ROLE###
 ```
 
 ## Istio

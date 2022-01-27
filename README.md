@@ -30,6 +30,9 @@ or
 istioctl install --set profile=default -y 
 ```
 
+```
+kubectl label namespace default istio-injection=enabled
+```
 ### 2. Install Kiali
 ```
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/kiali.yaml

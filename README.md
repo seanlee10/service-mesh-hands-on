@@ -4,7 +4,7 @@
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
 - [helm](https://helm.sh/docs/intro/install/)
-- [istioctl](https://istio.io/latest/docs/setup/getting-started/#download) (Optional)
+- [istioctl](https://istio.io/latest/docs/setup/getting-started/#download)
 - [k9s](https://k9scli.io/topics/install/) (Optional)
 - EKS Cluster
 ```bash
@@ -18,10 +18,7 @@ aws eks update-kubeconfig --name ###CLUSTER_NAME### --region ap-northeast-2 --ro
 ```
 kubectl apply -f color-service.yaml
 ```
-- Prometheus
-```
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/prometheus.yaml
-```
+
 
 ## Istio
 
@@ -31,36 +28,42 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/ad
 ![](./assets/virtualservices-destrules.jpg)
 
 
-### 1. Install Istio using pre-generated manifest 
+### 1. Install Istio using default profile
 ```bash
-kubectl apply -f istio/01_istio.yaml
-```
-or
-```
 istioctl install --set profile=default -y 
 ```
 
+### 2. Enable Sidecar injection and Install AddOns
 ```
+# Enable sidecar injection
 kubectl label namespace default istio-injection=enabled
-```
-### 2. Install Kiali
-```
+
+# Prometheus
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/prometheus.yaml
+
+# Grafana
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/grafana.yaml
+
+# Jaeger
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/jaeger.yaml
+
+# Kiali
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/kiali.yaml
 ```
 
 ### 3. Install Gateway
 ```
-kubectl apply -f istio/02_gateway.yaml
+kubectl apply -f istio/01_gateway.yaml
 ```
 
 ### 4. Install VirtualService
 ```
-kubectl apply -f istio/03_virtualservice.yaml
+kubectl apply -f istio/02_virtualservice.yaml
 ```
 
 ### 5. Install DestinationRule
 ```
-kubectl apply -f istio/04_destinationrule.yaml
+kubectl apply -f istio/03_destinationrule.yaml
 ```
 
 ### 6. Test Traffic Routing
@@ -100,9 +103,12 @@ helm upgrade -i appmesh-controller eks/appmesh-controller \
     --set serviceAccount.name=appmesh-controller
 ```
 
-### 2. Install Kiali
+### 2. Deploy App Mesh resources
 ```
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/kiali.yaml
+kubectl apply -f appmesh/01_namespace.yaml
+kubectl apply -f appmesh/02_mesh.yaml
+kubectl apply -f appmesh/03_virtualnode.yaml
+kubectl apply -f appmesh/04_virtualrouter.yaml
 ```
 
 ### 3. Install Gateway

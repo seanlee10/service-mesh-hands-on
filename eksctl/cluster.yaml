@@ -1,0 +1,36 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: cluster-NAME
+  region: ap-northeast-2
+
+vpc:
+  subnets:
+    private:
+      ap-northeast-2a: { id: subnet-08c31c332fc6d88c2 }
+      ap-northeast-2c: { id: subnet-0b24d300cf2571de7 }
+
+managedNodeGroups:
+  - name: "mng-mesh"
+    labels:
+      position: "mesh"
+    instanceType: m5.large
+    minSize: 2
+    maxSize: 10
+    desiredCapacity: 2
+    volumeSize: 20
+    privateNetworking: true
+    tags:
+      nodegroup-role: "mesh"
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        externalDNS: true
+        certManager: true
+        albIngress: true
+        cloudWatch: true
+        
+        
+
+        

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: service-blue
-        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-blue:v1.0.0
+        image: ghcr.io/service-blue:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: service-red
-        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-red:v1.0.0
+        image: ghcr.io/service-red:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -108,7 +108,7 @@ spec:
     spec:
       containers:
       - name: service-violet
-        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-violet:v1.0.0
+        image: ghcr.io/service-violet:1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -146,6 +146,6 @@ spec:
     spec:
       containers:
       - name: service-purple
-        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-purple:v1.0.0
+        image: ghcr.io/service-purple:1.0.0
         ports:
         - containerPort: 3000

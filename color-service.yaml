@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-blue
-  namespace: my-apps
+  namespace: default
   labels:
     app: service-blue
 spec:
@@ -11,13 +11,13 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: service-blue
-  namespace: my-apps
+  namespace: default
   labels:
     app: service-blue
 spec:
@@ -32,6 +32,120 @@ spec:
     spec:
       containers:
       - name: service-blue
-        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-blue:v0.0.1
+        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-blue:v1.0.0
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-red
+  namespace: default
+  labels:
+    app: service-red
+spec:
+  selector:
+    app: service-red
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-red
+  namespace: default
+  labels:
+    app: service-red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-red
+  template:
+    metadata:
+      labels:
+        app: service-red
+    spec:
+      containers:
+      - name: service-red
+        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-red:v1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-violet
+  namespace: default
+  labels:
+    app: service-violet
+spec:
+  selector:
+    app: service-violet
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-violet
+  namespace: default
+  labels:
+    app: service-violet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-violet
+  template:
+    metadata:
+      labels:
+        app: service-violet
+    spec:
+      containers:
+      - name: service-violet
+        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-violet:v1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-purple
+  namespace: default
+  labels:
+    app: service-purple
+spec:
+  selector:
+    app: service-purple
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-purple
+  namespace: default
+  labels:
+    app: service-purple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-purple
+  template:
+    metadata:
+      labels:
+        app: service-purple
+    spec:
+      containers:
+      - name: service-purple
+        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-purple:v1.0.0
+        ports:
+        - containerPort: 3000

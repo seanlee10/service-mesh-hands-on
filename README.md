@@ -25,6 +25,8 @@ kubectl apply -f color-service.yaml
 > Did you know?
 > Istio means "Sail" in Greek
 
+![](./assets/istio-logo.svg)
+
 ![](./assets/virtualservices-destrules.jpg)
 
 

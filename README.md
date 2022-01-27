@@ -3,14 +3,16 @@
 ## Prerequisite
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
+- [helm](https://helm.sh/docs/intro/install/)
 - [istioctl](https://istio.io/latest/docs/setup/getting-started/#download) (Optional)
-
+- [k9s](https://k9scli.io/topics/install/) (Optional)
+- Running Cluster
 ```bash
 # Create EKS Cluster
 eksctl create cluster -f eksctl/cluster.yaml
 
 # Create Kubeconfig
-aws eks update-kubeconfig --name ###YOUR_CLUSTER### --region ap-northeast-2 --role-arn ###IAM_ROLE###
+aws eks update-kubeconfig --name ###YOUR_CLUSTER### --region ap-northeast-2 --role-arn ###IAM_ROLE_ARN###
 ```
 
 ## Istio
@@ -45,17 +47,17 @@ kubectl apply -f istio/02_gateway.yaml
 
 ### 4. Install Sample App
 ```
-kubectl apply -f sampleapp
+kubectl apply -f istio/03_nginx.yaml
 ```
 
 ### 5. Install VirtualService
 ```
-kubectl apply -f istio/03_virtualservice.yaml
+kubectl apply -f istio/04_virtualservice.yaml
 ```
 
 ### 6. Install DestinationRule
 ```
-kubectl apply -f istio/04_destinationrule.yaml
+kubectl apply -f istio/05_destinationrule.yaml
 ```
 
 ### 7. Test Traffic Routing

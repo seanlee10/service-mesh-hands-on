@@ -6,7 +6,11 @@
 - [istioctl](https://istio.io/latest/docs/setup/getting-started/#download) (Optional)
 
 ```bash
+# Create EKS Cluster
 eksctl create cluster -f eksctl/cluster.yaml
+
+# Create Kubeconfig
+aws eks update-kubeconfig --name cluster-seanlee --region ap-northeast-2 --role-arn arn:aws:iam::155220455506:role/eks-admin
 ```
 
 ## Istio

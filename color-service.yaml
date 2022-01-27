@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-blue
+  namespace: my-apps
+  labels:
+    app: service-blue
+spec:
+  selector:
+    app: service-blue
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-blue
+  namespace: my-apps
+  labels:
+    app: service-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-blue
+  template:
+    metadata:
+      labels:
+        app: service-blue
+    spec:
+      containers:
+      - name: service-blue
+        image: 995244969880.dkr.ecr.ap-northeast-2.amazonaws.com/service-blue:v0.0.1
+        ports:
+        - containerPort: 8080

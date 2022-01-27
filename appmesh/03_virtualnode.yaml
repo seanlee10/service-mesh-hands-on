@@ -1,0 +1,16 @@
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualNode
+metadata:
+  name: service-blue
+  namespace: my-apps
+spec:
+  podSelector:
+    matchLabels:
+      app: service-blue
+  listeners:
+    - portMapping:
+        port: 80
+        protocol: http
+  serviceDiscovery:
+    dns:
+      hostname: service-blue.my-apps.svc.cluster.local

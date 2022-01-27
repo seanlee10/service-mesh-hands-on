@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-mesh-sa
+  namespace: my-apps
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::995244969880:role/eksctl-appmesh-getting-started-eks-addon-iam-Role1-1XD6OXP4O40V7
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-gw
+  namespace: my-apps
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8088
+      name: http
+  selector:
+    app: ingress-gw
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-gw
+  namespace: my-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ingress-gw
+  template:
+    metadata:
+      labels:
+        app: ingress-gw
+      annotations:
+        appmesh.k8s.aws/sidecarInjectorWebhook: disabled
+    spec:
+      serviceAccountName: yelb-mesh-sa
+      securityContext:
+        fsGroup: 65534
+      containers:
+        - name: envoy
+          image: public.ecr.aws/appmesh/aws-appmesh-envoy:v1.18.3.0-prod
+          ports:
+            - containerPort: 8088
+          env:
+            - name: APPMESH_RESOURCE_ARN
+              value: "mesh/yelb-mesh/virtualGateway/ingress-gw_yelb"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: my-apps
+  name: ingress-gw
+  labels:
+    app: ingress-gw
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets: 'subnet-0470b0117959a6a74,subnet-0a5fb4ed42acbe2c2'
+    alb.ingress.kubernetes.io/group.name: appmesh-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: ingress-gw
+              servicePort: 80

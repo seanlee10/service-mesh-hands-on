@@ -1,0 +1,11 @@
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualService
+metadata:
+  name: service-blue
+  namespace: my-apps
+spec:
+  awsName: service-blue.yelb.svc.cluster.local
+  provider:
+    virtualRouter:
+      virtualRouterRef:
+        name: service-blue-virtual-router

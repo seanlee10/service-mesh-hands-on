@@ -18,6 +18,7 @@ aws eks update-kubeconfig --name ###YOUR_CLUSTER### --region ap-northeast-2 --ro
 > Did you know?
 > Istio means "Sail" in Greek
 
+![](./assets/virtualservices-destrules.jpg)
 
 
 ### 1. Install Istio using pre-generated manifest 

@@ -1,0 +1,117 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: service-blue-vsvc
+  namespace: default
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - uri:
+        exact: "/blue"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: service-blue.default.svc.cluster.local
+        port:
+          number: 80
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: service-blue-vsvc
+#   namespace: default
+# spec:
+#   gateways:
+#   - gateway
+#   hosts:
+#   - "*"
+#   http:
+#   - match:
+#     - uri:
+#         exact: "/blue"
+#     rewrite:
+#       uri: "/"
+#     route:
+#     - destination:
+#         host: service-blue.default.svc.cluster.local
+#         subset: v1
+#         port:
+#           number: 80
+#       weight: 50
+#     - destination:
+#         host: service-blue.default.svc.cluster.local
+#         subset: v2
+#         port:
+#           number: 80
+#       weight: 50
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: service-red-vsvc
+  namespace: default
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - uri:
+        exact: "/red"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: service-red.default.svc.cluster.local
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: service-violet-vsvc
+  namespace: default
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - uri:
+        exact: "/violet"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: service-violet.default.svc.cluster.local
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: service-purple-vsvc
+  namespace: default
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - uri:
+        exact: "/purple"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: service-purple.default.svc.cluster.local
+        port:
+          number: 80

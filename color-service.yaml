@@ -20,6 +20,7 @@ metadata:
   namespace: default
   labels:
     app: service-blue
+    version: v1
 spec:
   replicas: 2
   selector:
@@ -33,6 +34,30 @@ spec:
       containers:
       - name: service-blue
         image: ghcr.io/seanlee10/service-blue:1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-blue-preview
+  namespace: default
+  labels:
+    app: service-blue
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-blue
+  template:
+    metadata:
+      labels:
+        app: service-blue
+    spec:
+      containers:
+      - name: service-blue
+        image: ghcr.io/seanlee10/service-blue:1.0.1
         ports:
         - containerPort: 3000
 ---

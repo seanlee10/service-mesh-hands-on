@@ -8,6 +8,7 @@ metadata:
 spec:
   selector:
     app: service-blue
+    version: v1
   ports:
     - protocol: TCP
       port: 80
@@ -16,7 +17,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-blue
+  name: service-blue-v1
   namespace: default
   labels:
     app: service-blue
@@ -26,10 +27,12 @@ spec:
   selector:
     matchLabels:
       app: service-blue
+      version: v1
   template:
     metadata:
       labels:
         app: service-blue
+        version: v1
     spec:
       containers:
       - name: service-blue
@@ -40,20 +43,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-blue-preview
+  name: service-blue-v2
   namespace: default
   labels:
     app: service-blue
-    version: v1
+    version: v2
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: service-blue
+      version: v2
   template:
     metadata:
       labels:
         app: service-blue
+        version: v2
     spec:
       containers:
       - name: service-blue

@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: cluster-NAME
+  name: cluster-sean
   region: ap-northeast-2
 
 vpc:

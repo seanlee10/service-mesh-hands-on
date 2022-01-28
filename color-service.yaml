@@ -21,7 +21,7 @@ metadata:
   labels:
     app: service-blue
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: service-blue
@@ -59,7 +59,7 @@ metadata:
   labels:
     app: service-red
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: service-red
@@ -97,7 +97,7 @@ metadata:
   labels:
     app: service-violet
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: service-violet
@@ -135,7 +135,7 @@ metadata:
   labels:
     app: service-purple
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: service-purple

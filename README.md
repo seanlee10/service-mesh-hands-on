@@ -64,9 +64,9 @@ kubectl apply -f istio/01_gateway.yaml
 kubectl apply -f istio/02_virtualservice.yaml
 ```
 
-### 5. Install DestinationRule
+### 5. Install Ingress
 ```
-kubectl apply -f istio/03_destinationrule.yaml
+kubectl apply -f istio/03_ingress.yaml
 ```
 
 ### 6. Test Traffic Routing

@@ -8,7 +8,6 @@ metadata:
 spec:
   selector:
     app: service-blue
-    version: v1
   ports:
     - protocol: TCP
       port: 80

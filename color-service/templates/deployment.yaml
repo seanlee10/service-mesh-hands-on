@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-blue-v1
+  namespace: default
+  labels:
+    app: service-blue
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-blue
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: service-blue
+        version: v1
+    spec:
+      containers:
+      - name: service-blue
+        image: ghcr.io/seanlee10/service-blue:1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-blue-v2
+  namespace: default
+  labels:
+    app: service-blue
+    version: v2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-blue
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: service-blue
+        version: v2
+    spec:
+      containers:
+      - name: service-blue
+        image: ghcr.io/seanlee10/service-blue:1.0.1
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-violet
+  namespace: default
+  labels:
+    app: service-violet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-violet
+  template:
+    metadata:
+      labels:
+        app: service-violet
+    spec:
+      containers:
+      - name: service-violet
+        image: ghcr.io/seanlee10/service-violet:1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-red
+  namespace: default
+  labels:
+    app: service-red
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-red
+  template:
+    metadata:
+      labels:
+        app: service-red
+    spec:
+      containers:
+      - name: service-red
+        image: ghcr.io/seanlee10/service-red:1.0.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-purple
+  namespace: default
+  labels:
+    app: service-purple
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-purple
+  template:
+    metadata:
+      labels:
+        app: service-purple
+    spec:
+      containers:
+      - name: service-purple
+        image: ghcr.io/seanlee10/service-purple:1.0.0
+        ports:
+        - containerPort: 3000

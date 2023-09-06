@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: service-blue
   namespace: default
+  annotations: {{- toYaml .Values.annotations | nindent 4 }}
   labels:
     app: service-blue
 spec:

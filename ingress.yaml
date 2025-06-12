@@ -5,7 +5,6 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/subnets: subnet-0881a6a4e95588d78,subnet-0ba0c89de633a8c02
-    kubernetes.io/ingress.class: alb
   finalizers:
   - ingress.k8s.aws/resources
   labels:
@@ -13,6 +12,7 @@ metadata:
   name: ingress
   namespace: default
 spec:
+  ingressClassName: alb
   defaultBackend:
     service:
       name: nginx
